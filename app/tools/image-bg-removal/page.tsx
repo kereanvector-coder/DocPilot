@@ -34,9 +34,9 @@ export default function ImageBgRemovalPage() {
     setProgressMsg('Loading AI model (this may take a moment on first run)...');
     
     try {
-      const imglyRemoveBackground = (await import('@imgly/background-removal')).default;
+      const { removeBackground } = await import('@imgly/background-removal');
       
-      const blob = await imglyRemoveBackground(imageSrc, {
+      const blob = await removeBackground(imageSrc, {
         progress: (key, current, total) => {
           if (key === 'compute:inference') {
             setProgressMsg('Removing background...');
